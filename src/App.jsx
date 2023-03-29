@@ -17,8 +17,14 @@ function App() {
     };
 
     useEffect(() => {
-        searchMovies('Batman');
-    }, []);
+        // searchMovies();
+    }, [searchTerm]);
+
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            searchMovies(searchTerm);
+        }
+    };
 
     return (
         <div className="app">
@@ -31,6 +37,7 @@ function App() {
                     onChange={(e) => {
                         setSearchTerm(e.target.value);
                     }}
+                    onKeyDown={handleKeyPress}
                 />
                 <img
                     src={searchIcon}
@@ -48,7 +55,7 @@ function App() {
                     ))}
 
                 </div> : <div className="empty">
-                    <h3>No Movies as Such 🥺 </h3>
+                    <h3 style={{color: 'white'}}>No Movies !! 🥺 </h3>
                 </div>
             }
 
@@ -57,4 +64,4 @@ function App() {
     )
 }
 
-export default App
+export default App;
